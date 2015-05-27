@@ -19,12 +19,12 @@ import core.utils.ServletRequestUtils;
 public class AnswerController extends AbstractController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AnswerController.class);
-	private AnswerDao answerDao = new AnswerDao();	
-	private QuestionDao questionDao = new QuestionDao();
+	
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		 AnswerDao answerDao = new AnswerDao();	
+		 QuestionDao questionDao = new QuestionDao();
 		
 		long questionId = ServletRequestUtils.getRequiredLongParameter(request, "questionId");
 		String writer = ServletRequestUtils.getRequiredStringParameter(request, "writer");

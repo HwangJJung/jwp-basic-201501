@@ -16,13 +16,13 @@ import core.utils.ServletRequestUtils;
 public class DeleteController extends AbstractController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DeleteController.class);
-	private AnswerDao answerDao = new AnswerDao();	
-	private QuestionDao questionDao = new QuestionDao();
+	
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		
+		 AnswerDao answerDao = new AnswerDao();	
+		 QuestionDao questionDao = new QuestionDao();
 		long questionId = ServletRequestUtils.getLongParameter(request, "questionId");
 		long answerId = ServletRequestUtils.getRequiredLongParameter(request, "answerId");
 		logger.debug("questionId : {},  answerId: {}", questionId,answerId);
