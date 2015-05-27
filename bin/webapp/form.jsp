@@ -7,9 +7,8 @@
 <body>
 	<div id="main">
 		<c:set var="method" value="post" />
-		<c:set var="action" value="/save.next" />		
-		
-		<form name="questionForm" action="${action}" method="${method}">
+				
+		<form name="questionForm" action="/save.next" method="${method}">
 			<table>
 				<tr>
 					<td width="80">글쓴이</td>
