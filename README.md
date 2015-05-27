@@ -2,7 +2,14 @@
 * 
 
 #### 2. Tomcat 서버를 시작한 후 http://localhost:8080으로 접근시 호출 순서 및 흐름을 설명하라.
-* 
+* 서블릿 컨텍스트와 리퀘스트 매핑은 이미 끝난 이후부터 설명하겠습니다.
+* localhost:8080에 접근 시 디폴트로 지정되어있는 index.jsp 파일을 호출하게 됩니다.
+* 이 index.jsp 내부에서 "/list.next" 로 리다이렉트를 하고 있습니다.
+* 서버는 다시 "/list.next"로 리퀘스트를 받습니다.
+* 필터를 거쳐서 인코딩과 *.next 요청인지 확인한 후 requestmapping 에 따라 ListController가 요청을 받습니다.
+* listController 에서 QuestionDao 객체를 호출해 DB에 있는 퀘스트들을 가져와 jstl view "list.jsp" 에 퀘스트값을 넘깁니다.
+* jstl view list.jsp 에서는 퀘스트 값들을 가지고 html화면을 렌더링합니다. 
+* 렌더링 된 화면을  http 통신으로 클라이언트에 내려줍니다.
 
 #### 8. ListController와 ShowController가 멀티 쓰레드 상황에서 문제가 발생하는 이유에 대해 설명하라.
 * 각 컨트롤러는 리퀘스트 매핑 시에 초기화가 이뤄지면서 단 하나의 객체만 생성됩니다.
