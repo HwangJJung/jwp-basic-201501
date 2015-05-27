@@ -1,5 +1,10 @@
 #### 1. Tomcat 서버를 시작할 때 웹 애플리케이션이 초기화하는 과정을 설명하라.
-* 
+* 배포서술자(web.xml)을 읽는다.
+* Servlet Context 객체를 만듭니다.
+* web.xml에 작성되어 있던 초기화 파라미터들을 객체에 설정합니다.
+* 서블릿 컨테이너는 컨텍스트가 초기화 또는 종료 될때 이벤트를 발생시키는데 이때 listner로 등록된 객체들에게 이벤트가 발생했음을 알려줍니다. 이 이벤트가 발생했음을 통보 받고싶은 객체는 listner로 미리 등록을 해 두어야 하는데 그 등록은 @WebListener 어노테이션을 이용해서 할 수 있다. 
+* 현재 next.support.context.ContextLoaderListener에 @WebListener 어노테이션이 작성되어 있습니다. 따라서 컨텍스트가 초기화 되는 시점에 contextInitialized()메소드가 실행되면서 sql파일을 읽어와 DB 데이터를 초기화 합니다.
+* 이후 @WebServlet 어노테이션을 쓰는 서블릿인 DispatcherServelet 또한 초기화가 진행되면서 리퀘스트 매핑도 이뤄집니다.
 
 #### 2. Tomcat 서버를 시작한 후 http://localhost:8080으로 접근시 호출 순서 및 흐름을 설명하라.
 * 서블릿 컨텍스트와 리퀘스트 매핑은 이미 끝난 이후부터 설명하겠습니다.
