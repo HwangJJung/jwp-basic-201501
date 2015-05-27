@@ -13,8 +13,8 @@ import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
 import core.utils.ServletRequestUtils;
 
-public class EditController extends AbstractController {
-	private static final Logger logger = LoggerFactory.getLogger(EditController.class);
+public class FormController extends AbstractController {
+	private static final Logger logger = LoggerFactory.getLogger(FormController.class);
 	
 	
 	@Override
@@ -22,7 +22,7 @@ public class EditController extends AbstractController {
 			HttpServletResponse response) throws Exception {
 		
 		QuestionDao questionDao = new QuestionDao();
-		Question question;
+		
 		String uri = request.getRequestURI();
 		ModelAndView mav = jstlView("form.jsp");
 		logger.debug("uri : {}", uri);
@@ -30,7 +30,7 @@ public class EditController extends AbstractController {
 		if ( uri.equals("/edit.next")) {
 			long questionId = ServletRequestUtils.getRequiredLongParameter(request, "questionId");
 			logger.debug("questionId : {}", questionId);
-			question = questionDao.findById(questionId);
+			Question question = questionDao.findById(questionId);
 			mav.addObject("question", question);
 			mav.addObject("url", "/update.next");	
 		}
