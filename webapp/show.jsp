@@ -28,7 +28,7 @@
 	</div>    
 
   	<br /> <a href="/list.next">목록으로</a>
-  	
+  	<a href="/edit.next?questionId=${question.questionId}">수정하기</a>
 	<h3>답변</h3>
 	<div class="answerWrite">
 	<form method="post">

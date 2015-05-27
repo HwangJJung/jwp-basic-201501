@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import next.controller.AnswerController;
+import next.controller.CreateController;
 import next.controller.DeleteController;
+import next.controller.EditController;
+import next.controller.FormController;
 import next.controller.ListController;
 import next.controller.ListJsonController;
-import next.controller.QuestionController;
 import next.controller.ShowController;
+import next.controller.UpdateController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +23,10 @@ public class RequestMapping {
 	public void initMapping() {
 		mappings.put("/list.next", new ListController());
 		mappings.put("/show.next", new ShowController());
-		mappings.put("/form.next", new ForwardController("form.jsp"));
-		mappings.put("/save.next", new QuestionController());
+		mappings.put("/edit.next", new EditController());
+		mappings.put("/form.next", new FormController());
+		mappings.put("/save.next", new CreateController());
+		mappings.put("/update.next", new UpdateController());
 		mappings.put("/api/addanswer.next", new AnswerController());
 		mappings.put("/api/deleteAnswer.next", new DeleteController());
 		mappings.put("/api/list.next", new ListJsonController());

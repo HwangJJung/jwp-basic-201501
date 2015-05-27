@@ -9,7 +9,7 @@ import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
 import core.utils.ServletRequestUtils;
 
-public class QuestionController extends AbstractController {
+public class UpdateController extends AbstractController {
 	
 	
 		
@@ -17,12 +17,16 @@ public class QuestionController extends AbstractController {
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		QuestionDao questionDao = new QuestionDao();
-		
+		Long questionId = ServletRequestUtils.getRequiredLongParameter(request, "questionId");	
 		String writer = ServletRequestUtils.getRequiredStringParameter(request, "writer");
 		String title = ServletRequestUtils.getRequiredStringParameter(request, "title");		
 		String contents = ServletRequestUtils.getRequiredStringParameter(request, "contents");
-		Question input = new Question(writer, title, contents);
-		questionDao.insert(input);
+		
+		Question question = questionDao.findById(questionId);
+		question.setWriter(writer);
+		question.setTitle(title);
+		question.setContents(contents);
+		questionDao.update(question);
 		
 		ModelAndView mav = jstlView("redirect:/list.next");
 		return mav;
