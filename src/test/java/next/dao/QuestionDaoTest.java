@@ -24,11 +24,27 @@ public class QuestionDaoTest {
 
 	@Test
 	public void crud() throws Exception {
+		
 		Question expected = new Question("자바지기", "title", "contents");
 		QuestionDao dut = new QuestionDao();
 		dut.insert(expected);
 		
 		List<Question> questions = dut.findAll();
 		assertTrue(questions.size() > 0);
+	}
+	
+	@Test
+	public void comment() {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.addScript(new ClassPathResource("jwp.sql"));
+		DatabasePopulatorUtils.execute(populator, ConnectionManager.getDataSource());
+		Long questionId = (long) 1;
+		QuestionDao dut = new QuestionDao();
+		Question before = dut.findById(questionId);
+		int tmp = before.getCountOfComment();
+		dut.increaseCountOfComment(questionId);
+		Question after = dut.findById(questionId);
+		int expected = after.getCountOfComment();
+		assertTrue(expected > tmp);
 	}
 }

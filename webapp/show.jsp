@@ -32,7 +32,7 @@
 	<h3>답변</h3>
 	<div class="answerWrite">
 	<form method="post">
-	<input type="hidden" name="questionId" value="${question.questionId}">
+	<input id="questionId" type="hidden" name="questionId" value="${question.questionId}">
     <p>
         <label for="author">이름: </label>
         <input type="text" name="writer" id="writer" />
@@ -65,7 +65,7 @@
 	                ${answer.contents}
 	            </div>
 	            <div>
-	            	<a href="#">삭제</a>
+	            	<button class="del" data-answerId="${answer.answerId}" >삭제</button>
 	            </div>
 	        </div>	     
 	     </c:forEach>  

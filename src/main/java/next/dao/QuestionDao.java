@@ -46,6 +46,7 @@ public class QuestionDao {
 		String sql = "SELECT questionId, writer, title, contents, createdDate, countOfComment FROM QUESTIONS "
 				+ "WHERE questionId = ?";
 		
+		
 		RowMapper<Question> rm = new RowMapper<Question>() {
 			@Override
 			public Question mapRow(ResultSet rs) throws SQLException {
@@ -59,5 +60,21 @@ public class QuestionDao {
 		};
 		
 		return jdbcTemplate.queryForObject(sql, rm, questionId);
+	}
+	
+	public void increaseCountOfComment(long questionId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "UPDATE QUESTIONS SET countOfComment = countOfComment + 1"
+				+ " WHERE questionId = ? ";
+		
+		jdbcTemplate.update(sql, questionId);	
+	}
+	
+	public void decreaseCountOfComment(long questionId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "UPDATE QUESTIONS SET countOfComment = countOfComment - 1"
+				+ " WHERE questionId = ? ";
+		
+		jdbcTemplate.update(sql, questionId);	
 	}
 }
