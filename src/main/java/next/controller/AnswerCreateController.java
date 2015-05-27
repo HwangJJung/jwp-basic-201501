@@ -6,19 +6,17 @@ import javax.servlet.http.HttpServletResponse;
 import next.dao.AnswerDao;
 import next.dao.QuestionDao;
 import next.model.Answer;
-import next.model.Question;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import core.mvc.AbstractController;
-import core.mvc.JsonView;
 import core.mvc.ModelAndView;
 import core.utils.ServletRequestUtils;
 
-public class AnswerController extends AbstractController {
+public class AnswerCreateController extends AbstractController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(AnswerController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AnswerCreateController.class);
 	
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)

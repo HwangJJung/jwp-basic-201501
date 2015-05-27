@@ -1,13 +1,9 @@
 package next.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import next.dao.AnswerDao;
 import next.dao.QuestionDao;
-import next.model.Answer;
 import next.model.Question;
 
 import org.slf4j.Logger;
@@ -27,13 +23,20 @@ public class EditController extends AbstractController {
 		
 		QuestionDao questionDao = new QuestionDao();
 		Question question;
-		
-		long questionId = ServletRequestUtils.getRequiredLongParameter(request, "questionId");
-		logger.debug("questionId : {}", questionId);
-		question = questionDao.findById(questionId);
+		String uri = request.getRequestURI();
 		ModelAndView mav = jstlView("form.jsp");
-		mav.addObject("question", question);
-		mav.addObject("url", "/update.next");
+		logger.debug("uri : {}", uri);
+		
+		if ( uri.equals("/edit.next")) {
+			long questionId = ServletRequestUtils.getRequiredLongParameter(request, "questionId");
+			logger.debug("questionId : {}", questionId);
+			question = questionDao.findById(questionId);
+			mav.addObject("question", question);
+			mav.addObject("url", "/update.next");	
+		}
+		else{
+			mav.addObject("url", "/save.next");
+		}
 		return mav;
 	}
 }

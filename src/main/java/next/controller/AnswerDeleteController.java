@@ -13,9 +13,9 @@ import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
 import core.utils.ServletRequestUtils;
 
-public class DeleteController extends AbstractController {
+public class AnswerDeleteController extends AbstractController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(DeleteController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AnswerDeleteController.class);
 	
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
